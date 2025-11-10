@@ -112,3 +112,11 @@ date
 ```
 
 ---
+
+## Useful References
+
+### Documentation & Resources
+- 📖 [Git Official Documentation](https://git-scm.com/doc)
+- 📋 [Interactive Git Cheatsheet (PDF)](https://github.com/ravikant-diwakar/DevOps/blob/master/git-cheat-sheet-education.pdf)
+- 🎓 [Pro Git Book (Free)](https://git-scm.com/book)
+- 🛠️ [Git Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows)
