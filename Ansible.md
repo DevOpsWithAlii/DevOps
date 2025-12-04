@@ -90,52 +90,24 @@ ansible all -m ping -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_k
 ### 8️⃣ Run Test Command on All Nodes
 
 ```bash
-ansible all -a "free -h" -i /home/ubuntu/ansible/hosts --private-key=~/.ssh/ansible_key
+ansible all -a "free -h" 
 ```
-
-
-## 🧰 Ansible Ad-Hoc Commands Cheat Sheet
-
-### ✅ **Inventory and SSH Setup**
-
-```bash
-# Inventory file path
-INVENTORY="/home/ubuntu/ansible/hosts"
-
-# SSH key for connection
-KEY="--private-key=~/.ssh/ansible_key"
-```
-
----
 
 ### 📦 **Install Nginx (Ubuntu/Debian)**
 
 ```bash
-ansible all -m apt -a "name=nginx state=present update_cache=yes" -b -i $INVENTORY $KEY
+ansible all -m apt -b -a "name=nginx state=present update_cache=yes" 
 ```
----
-```
-
-ansible all \                        # Run this on all hosts in the inventory
-  -m apt \                           # Use the Ansible apt module (for Debian/Ubuntu package management)
-  -a "name=nginx state=present update_cache=yes" \  # Arguments to the module:
-                                                    # name=nginx         → Package to install
-                                                    # state=present      → Ensure it's installed (if already installed, do nothing)
-                                                    # update_cache=yes   → Run 'apt-get update' before installing
-  -b \                               # Run with sudo (become)
-  -i $INVENTORY \                    # Path to inventory file (list of hosts)
-  $KEY                               # SSH private key to access target machines
-
 ---
 
 ### 🛑 **Stop and Disable Nginx**
 
 ```bash
 # Stop the nginx service
-ansible all -m ansible.builtin.service -a "name=nginx state=stopped" -b -i $INVENTORY $KEY
+ansible all -m ansible.builtin.service -a "name=nginx state=stopped" -b 
 
 # Disable nginx from starting on boot
-ansible all -a "systemctl disable nginx" -b -i $INVENTORY $KEY
+ansible all -a "systemctl disable nginx" -b 
 ```
 
 ---
@@ -144,10 +116,10 @@ ansible all -a "systemctl disable nginx" -b -i $INVENTORY $KEY
 
 ```bash
 # Uninstall nginx (keeps config files)
-ansible all -m apt -a "name=nginx state=absent" -b -i $INVENTORY $KEY
+ansible all -m apt -a "name=nginx state=absent" -b 
 
 # OR uninstall and remove config files
-ansible all -m apt -a "name=nginx state=absent purge=yes" -b -i $INVENTORY $KEY
+ansible all -m apt -a "name=nginx state=absent purge=yes" -b 
 ```
 
 ---
@@ -156,19 +128,19 @@ ansible all -m apt -a "name=nginx state=absent purge=yes" -b -i $INVENTORY $KEY
 
 ```bash
 # Memory usage
-ansible all -a "free -h" -i $INVENTORY $KEY
+ansible all -a "free -h" 
 
 # Disk usage
-ansible all -a "df -h" -i $INVENTORY $KEY
+ansible all -a "df -h" 
 
 # CPU and uptime
-ansible all -a "uptime" -i $INVENTORY $KEY
+ansible all -a "uptime" 
 
 # Hostname
-ansible all -a "hostname" -i $INVENTORY $KEY
+ansible all -a "hostname" 
 
 # OS info
-ansible all -a "cat /etc/os-release" -i $INVENTORY $KEY
+ansible all -a "cat /etc/os-release" 
 ```
 
 ---
@@ -177,10 +149,10 @@ ansible all -a "cat /etc/os-release" -i $INVENTORY $KEY
 
 ```bash
 # Install multiple packages
-ansible all -m apt -a "name=curl,git,state=present update_cache=yes" -b -i $INVENTORY $KEY
+ansible all -m apt -a "name=curl,git,state=present update_cache=yes" -b 
 
 # Upgrade all packages
-ansible all -m apt -a "upgrade=dist" -b -i $INVENTORY $KEY
+ansible all -m apt -a "upgrade=dist" -b 
 ```
 
 ---
@@ -189,13 +161,13 @@ ansible all -m apt -a "upgrade=dist" -b -i $INVENTORY $KEY
 
 ```bash
 # Start nginx
-ansible all -m ansible.builtin.service -a "name=nginx state=started" -b -i $INVENTORY $KEY
+ansible all -m ansible.builtin.service -a "name=nginx state=started" -b 
 
 # Restart nginx
-ansible all -m ansible.builtin.service -a "name=nginx state=restarted" -b -i $INVENTORY $KEY
+ansible all -m ansible.builtin.service -a "name=nginx state=restarted" -b 
 
 # Check if nginx is active
-ansible all -a "systemctl is-active nginx" -b -i $INVENTORY $KEY
+ansible all -a "systemctl is-active nginx" -b 
 ```
 
 ---
@@ -204,10 +176,10 @@ ansible all -a "systemctl is-active nginx" -b -i $INVENTORY $KEY
 
 ```bash
 # View disk usage by user
-ansible all -a "du -sh /home/*" -b -i $INVENTORY $KEY
+ansible all -a "du -sh /home/*" -b 
 
 # Show last 50 lines of syslog
-ansible all -a "tail -n 50 /var/log/syslog" -b -i $INVENTORY $KEY
+ansible all -a "tail -n 50 /var/log/syslog" -b 
 ```
 
 ---
