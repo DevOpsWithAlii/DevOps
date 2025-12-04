@@ -34,6 +34,13 @@ ssh -i ~/.ssh/ansible_key ubuntu@3.145.29.59
 ```
 
 ---
+### 3️.1 Fix errore if not connect servers
+
+```bash
+export ANSIBLE_HOST_KEY_CHECKING=False
+```
+
+---
 
 ### 4️⃣ Check Ansible Inventory File
 
