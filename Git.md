@@ -7,7 +7,7 @@
 
 # Set global Git user configuration
 git config --global user.name "DevOpsWithAlii"
-git config --global user.email "amreeta9798@gmail.com"
+git config --global user.email "jugnujugnu9798@gmail.com"
 
 # List all files (including hidden ones)
 ls -a
